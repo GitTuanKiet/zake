@@ -1,0 +1,17 @@
+name: zake
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${ZAKE_PORT:-4277}:${ZAKE_PORT:-4277}"
+    env_file:
+      - .env
+    volumes:
+      - type: volume
+        source: cache
+        target: '/app/.cache'
+
+volumes:
+  cache:
